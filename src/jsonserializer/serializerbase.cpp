@@ -391,6 +391,18 @@ QVariant SerializerBase::deserializeVariant(int propertyType, const QCborValue &
 			if (value.isNull())
 				allowConvert = false;
 			break;
+        case QMetaType::Bool:
+        case QMetaType::Int:
+        case QMetaType::UInt:
+        case QMetaType::Long:
+        case QMetaType::ULong:
+        case QMetaType::LongLong:
+        case QMetaType::ULongLong:
+            if (variant.typeId() == QMetaType::Double)
+            {
+                allowConvert = false;
+            }
+            break;
 		default:
 			break;
 		}
