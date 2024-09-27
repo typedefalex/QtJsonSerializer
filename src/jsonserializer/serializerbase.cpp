@@ -162,7 +162,7 @@ void SerializerBase::setAllowDefaultNull(bool allowDefaultNull)
 		return;
 
 	d->allowNull = allowDefaultNull;
-	emit allowDefaultNullChanged(d->allowNull, {});
+    emit allowDefaultNullChanged(d->allowNull, QPrivateSignal());
 }
 
 void SerializerBase::setKeepObjectName(bool keepObjectName)
@@ -172,7 +172,7 @@ void SerializerBase::setKeepObjectName(bool keepObjectName)
 		return;
 
 	d->keepObjectName = keepObjectName;
-	emit keepObjectNameChanged(d->keepObjectName, {});
+    emit keepObjectNameChanged(d->keepObjectName, QPrivateSignal());
 }
 
 void SerializerBase::setEnumAsString(bool enumAsString)
@@ -182,7 +182,7 @@ void SerializerBase::setEnumAsString(bool enumAsString)
 		return;
 
 	d->enumAsString = enumAsString;
-	emit enumAsStringChanged(d->enumAsString, {});
+    emit enumAsStringChanged(d->enumAsString, QPrivateSignal());
 }
 
 void SerializerBase::setVersionAsString(bool versionAsString)
@@ -192,7 +192,7 @@ void SerializerBase::setVersionAsString(bool versionAsString)
 		return;
 
 	d->versionAsString = versionAsString;
-	emit versionAsStringChanged(d->versionAsString, {});
+    emit versionAsStringChanged(d->versionAsString, QPrivateSignal());
 }
 
 void SerializerBase::setDateAsTimeStamp(bool dateAsTimeStamp)
@@ -202,7 +202,7 @@ void SerializerBase::setDateAsTimeStamp(bool dateAsTimeStamp)
 		return;
 
 	d->dateAsTimeStamp = dateAsTimeStamp;
-	emit dateAsTimeStampChanged(d->dateAsTimeStamp, {});
+    emit dateAsTimeStampChanged(d->dateAsTimeStamp, QPrivateSignal());
 }
 
 void SerializerBase::setUseBcp47Locale(bool useBcp47Locale)
@@ -212,7 +212,7 @@ void SerializerBase::setUseBcp47Locale(bool useBcp47Locale)
 		return;
 
 	d->useBcp47Locale = useBcp47Locale;
-	emit useBcp47LocaleChanged(d->useBcp47Locale, {});
+    emit useBcp47LocaleChanged(d->useBcp47Locale, QPrivateSignal());
 }
 
 void SerializerBase::setValidationFlags(ValidationFlags validationFlags)
@@ -222,7 +222,7 @@ void SerializerBase::setValidationFlags(ValidationFlags validationFlags)
 		return;
 
 	d->validationFlags = validationFlags;
-	emit validationFlagsChanged(d->validationFlags, {});
+    emit validationFlagsChanged(d->validationFlags, QPrivateSignal());
 }
 
 void SerializerBase::setPolymorphing(SerializerBase::Polymorphing polymorphing)
@@ -232,7 +232,7 @@ void SerializerBase::setPolymorphing(SerializerBase::Polymorphing polymorphing)
 		return;
 
 	d->polymorphing = polymorphing;
-	emit polymorphingChanged(d->polymorphing, {});
+    emit polymorphingChanged(d->polymorphing, QPrivateSignal());
 }
 
 void SerializerBase::setMultiMapMode(SerializerBase::MultiMapMode multiMapMode)
@@ -242,7 +242,7 @@ void SerializerBase::setMultiMapMode(SerializerBase::MultiMapMode multiMapMode)
 		return;
 
 	d->multiMapMode = multiMapMode;
-	emit multiMapModeChanged(d->multiMapMode, {});
+    emit multiMapModeChanged(d->multiMapMode, QPrivateSignal());
 }
 
 void SerializerBase::setIgnoreStoredAttribute(bool ignoreStoredAttribute)
@@ -252,7 +252,7 @@ void SerializerBase::setIgnoreStoredAttribute(bool ignoreStoredAttribute)
 		return;
 
 	d->ignoreStoredAttribute = ignoreStoredAttribute;
-	emit ignoreStoredAttributeChanged(d->ignoreStoredAttribute, {});
+    emit ignoreStoredAttributeChanged(d->ignoreStoredAttribute, QPrivateSignal());
 }
 
 QVariant SerializerBase::getProperty(const char *name) const
@@ -391,6 +391,18 @@ QVariant SerializerBase::deserializeVariant(int propertyType, const QCborValue &
 			if (value.isNull())
 				allowConvert = false;
 			break;
+        case QMetaType::Bool:
+        case QMetaType::Int:
+        case QMetaType::UInt:
+        case QMetaType::Long:
+        case QMetaType::ULong:
+        case QMetaType::LongLong:
+        case QMetaType::ULongLong:
+            if (variant.typeId() == QMetaType::Double)
+            {
+                allowConvert = false;
+            }
+            break;
 		default:
 			break;
 		}

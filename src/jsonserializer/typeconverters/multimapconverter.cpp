@@ -2,6 +2,8 @@
 #include "exception.h"
 #include "cborserializer.h"
 
+#include <QAssociativeIterable>
+
 #include <QtCore/QJsonObject>
 #include <QtCore/QJsonArray>
 using namespace QtJsonSerializer;

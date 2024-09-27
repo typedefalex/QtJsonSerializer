@@ -2,7 +2,7 @@
 #include "exception.h"
 #include "cborserializer.h"
 #include "metawriters.h"
-
+#include <QSequentialIterable>
 #include <QtCore/QJsonArray>
 using namespace QtJsonSerializer;
 using namespace QtJsonSerializer::TypeConverters;

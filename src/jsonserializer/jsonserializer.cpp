@@ -100,7 +100,7 @@ void JsonSerializer::setByteArrayFormat(JsonSerializer::ByteArrayFormat byteArra
 		return;
 
 	d->byteArrayFormat = byteArrayFormat;
-	emit byteArrayFormatChanged(d->byteArrayFormat, {});
+    emit byteArrayFormatChanged(d->byteArrayFormat, QPrivateSignal());
 }
 
 void JsonSerializer::setValidateBase64(bool validateBase64)
@@ -110,7 +110,7 @@ void JsonSerializer::setValidateBase64(bool validateBase64)
 		return;
 
 	d->validateBase64 = validateBase64;
-	emit validateBase64Changed(d->validateBase64, {});
+    emit validateBase64Changed(d->validateBase64, QPrivateSignal());
 }
 
 bool JsonSerializer::jsonMode() const
