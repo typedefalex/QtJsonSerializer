@@ -77,7 +77,7 @@ ExceptionPrivate::ExceptionPrivate(QByteArray msg) :
 	if(trace.isEmpty())
 		what += " <root element>";
 	else {
-		for(const auto &p : qAsConst(trace))
+        for(const auto &p : std::as_const(trace))
 			what += "\n\t" + p.first + " (Type: " + p.second + ")";
 	}
 }

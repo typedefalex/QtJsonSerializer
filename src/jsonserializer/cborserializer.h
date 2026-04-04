@@ -3,6 +3,7 @@
 
 #include "QtJsonSerializer/qtjsonserializer_global.h"
 #include "QtJsonSerializer/serializerbase.h"
+#include <QIODevice>
 
 namespace QtJsonSerializer {
 

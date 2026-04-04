@@ -114,7 +114,7 @@ void CborSerializer::setHandleSpecialNumbers(bool handleSpecialNumbers)
 		return;
 
 	d->handleSpecialNumbers = handleSpecialNumbers;
-	emit handleSpecialNumbersChanged(d->handleSpecialNumbers, {});
+    emit handleSpecialNumbersChanged(d->handleSpecialNumbers, QPrivateSignal());
 }
 
 bool CborSerializer::jsonMode() const

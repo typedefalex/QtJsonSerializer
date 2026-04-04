@@ -142,7 +142,7 @@ public:
 	}
 
 	void add(const QVariant &value) final {
-		_data->append(value.template value<TClass>());
+        _data->push_back(value.template value<TClass>());
 	}
 
 private:
